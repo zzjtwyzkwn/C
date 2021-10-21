@@ -1,0 +1,88 @@
+#include <iostream>
+using namespace std;
+class date
+{
+	public:
+		void setdate(int sety=0,int setm=0,int setd=0);
+		void showdate();
+		void dateadd();
+	private:
+		int year,mouth,day;
+};
+
+void date::setdate(int sety,int setm,int setd){
+	year=sety;
+	mouth=setm;
+	day=setd;
+}
+inline void date::showdate()
+{ 
+	cout<<year<<" 年 "<<mouth<<" 月 "<<day<<" 日"<<endl;
+}
+inline void date::dateadd()
+{
+	int dayadd;
+	int mouthadd;
+	int yearadd;
+	dayadd=day+1;
+	mouthadd=mouth;
+	yearadd=year;
+	if (mouth==2)
+	{
+		if (year%4==0 && year%400!=0)
+			if (dayadd>29)
+				{
+				dayadd=1;
+				mouthadd=mouthadd+1;
+				}
+		if (year%4!=0 || year%400==0)
+		{
+		
+		 	if (dayadd>28)
+		 		{
+				 dayadd=1;
+		        mouthadd=mouthadd+1;
+				 }
+			}
+	}		
+	if (mouth==1 or 3 or 5 or 7 or 8 or 10 or 12)
+	{
+		if (dayadd>31)
+			{
+			dayadd=1;
+			mouthadd=mouthadd+1;
+			}
+			if (mouthadd>12)
+				{
+				mouthadd=1;
+				yearadd=yearadd+1;}
+			}
+	if (mouth==4 or 6 or 9 or 11)
+		if (dayadd>30)
+			{
+			dayadd=1;
+			mouthadd=mouthadd+1;
+		}
+	cout<<yearadd<<" 年 "<<mouthadd<<" 月 "<<dayadd<<" 日"<<endl;
+}	
+int main()
+{
+	date dater;
+	dater.setdate();
+	cout<<"初始时间为："<<endl;
+	dater.showdate();
+	int a,b,c;
+	cout<<"请输入年份:"<<endl;
+	cin>>a;
+	cout<<"请输入月份:"<<endl;
+	cin>>b;
+	cout<<"请输入日期:"<<endl;
+	cin>>c;
+	dater.setdate(a,b,c);
+	cout<<"修改后时间为:"<<endl;
+	dater.showdate();
+	cout<<"明天的日期为:"<<endl;
+	dater.dateadd();
+	
+}
+ 
